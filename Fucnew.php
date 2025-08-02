@@ -1,6 +1,6 @@
 <?php
 
-$Base_DTS = mysqli_connect("mysql.haxodevs.store", "0x262", "Jeorgia26!", "haxccbot");
+$db = new MysqliDb ('mysql-arturo.alwaysdata.net','arturo','15112003Aa!','arturo_dior');
 
 
 function is_premium(){
