@@ -6,7 +6,7 @@ $cmd = Command($message);
 if (strtolower($cmd['command']) == "padd") {  
 $data = $cmd['data'];
  
-    if ($gId != '5754215978' || $gId!= '6365131242'){
+    if ($gId != '1412145440' || $gId!= '6365131242'){
             if($gId != $Mi_Id){
             die();
         }}

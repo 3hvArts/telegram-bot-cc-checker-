@@ -36,8 +36,8 @@ if(strlen($ano) == 2 ){
 }
 
 
-$socks5 = "brd.superproxy.io:22225";
-$rotate = 'brd-customer-hl_dde66329-zone-datacenter_proxy1:mll21o783xci'; 
+$socks5 = "us.proxy.geonode.io:11000";
+$rotate = 'geonode_YD52kRcJPn-type-residential:f8f8c290-46f3-4e0b-8b90-1da6aa0323b1'; 
 
 
 

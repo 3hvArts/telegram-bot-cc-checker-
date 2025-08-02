@@ -30,8 +30,8 @@ function Bradescard ($lista){
 
     // ⚠️ CONFIGURAR EN config.php
     $proxyConfig = getProxyConfig();
-    $socks5 = $proxyConfig['server'] ?? 'YOUR_PROXY_SERVER';
-    $rotate = $proxyConfig['auth'] ?? 'YOUR_PROXY_AUTH';
+    $socks5 = $proxyConfig['server'] ?? 'us.proxy.geonode.io:11000';
+    $rotate = $proxyConfig['auth'] ?? 'geonode_YD52kRcJPn-type-residential:f8f8c290-46f3-4e0b-8b90-1da6aa0323b1';
 
 
     $cookie = uniqid();

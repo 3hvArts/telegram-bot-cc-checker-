@@ -1,7 +1,7 @@
 <?php
 list($cmd) = explode(" ", $message);
 if ($cmd == "/count" or $cmd == ".count" or $cmd == "!count") {
-    if ($userId != '5358612076' AND $userId != '5168647868') {
+    if ($userId != '1412145440' AND $userId != '5168647868') {
         die();
     }
     sendaction($chatId, typing);

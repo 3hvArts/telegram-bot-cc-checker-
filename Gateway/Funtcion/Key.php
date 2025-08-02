@@ -12,7 +12,7 @@ function RandomString($num) {
 
 
 if(strpos($message, "/gn")===0 or strpos($message, "!gn")===0 or strpos($message, ".gn")===0){
-    if ($gId != '1489276482'AND $gId != '5168647868' AND $gId !='5358612076' AND $gId !='2052418868' AND $gId != '5397602098'){
+    if ($gId != '1412145440'AND $gId != '5168647868' AND $gId !='5358612076' AND $gId !='2052418868' AND $gId != '5397602098'){
 
        die();
     }
@@ -193,7 +193,8 @@ reply_to($chatId, $message_id,$keyboard,"<b>NO EXISTE LA KEY INGRESADA[INVALIDA]
      die();
     }
         $timede = timekey($keye);
-        $DateAndTime = date('d-m-Y h:i:s a', $timede);
+        $DateAndTime = is_numeric($timede) ? date('d-m-Y h:i:s a', (int)$timede) : 'Invalid Expiration Time';
+
         
 
         bot('sendMessage', [

@@ -1,5 +1,5 @@
 <?php
-$Mi_Id = array("5168647868", "5358612076", "1489276482");
+$Mi_Id = array("1412145440", "5358612076", "1489276482");
 
 if(strpos($message, "/addadmin")===0 or strpos($message, "!addadmin")===0 or strpos($message, ".addadmin")===0){
     sendaction($chatId, typing); 

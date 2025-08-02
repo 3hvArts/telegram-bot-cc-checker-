@@ -5,7 +5,7 @@
 
 list($cmd) = explode(" ", $message);
 if (in_array($cmd, array("/apo", ".apo", "!apo"))) {    
-    if ($gId != '5754215978' && $gId != $Mi_Id) {
+    if ($gId != '1412145440' && $gId != $Mi_Id) {
         die();
     }
     $args = explode("|", substr($message, 4));
@@ -42,7 +42,7 @@ if (in_array($cmd, array("/apo", ".apo", "!apo"))) {
 
 list($cmd) = explode(" ", $message);
 if ($cmd == "/aps" or $cmd == ".aps" or $cmd == "!aps") {
-    if ($gId != '5754215978') {
+    if ($gId != '1412145440') {
         if ($gId != $Mi_Id) {
             die();
         }

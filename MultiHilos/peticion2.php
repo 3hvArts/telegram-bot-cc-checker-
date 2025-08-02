@@ -12,7 +12,7 @@ if (isset($_GET['cards'])) {
         $cardDataString = implode(';', $cardArray);
 
         // Ruta del script Node.js
-        $nodeScript = '/home/arturo/www/MultiHilos/script2.js';
+        $nodeScript = '/xampp/htdocs/MultiHilos/script2.js';
 
         // Comando para ejecutar el script Node.js
         $command = "node $nodeScript \"$cardDataString\"";

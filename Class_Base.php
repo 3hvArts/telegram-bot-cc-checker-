@@ -42,10 +42,19 @@ class Database {
      * Retorna ARRAY si la consulta arroja algun resultado
      * Retorna FALSE en caso contrario 
      */
-    public function consulta($query) {
+     public function consulta($query) {
+        // Log query (optional, can be removed in production)
+        error_log("[SQL EXECUTE] $query");
 
-        if (($resultado = $this->link->query($query))) {
+        // Quick protection check for broken queries (like LIMIT 1 without WHERE value)
+        if (preg_match('/WHERE\s+\w+\s*=\s*(\'\'|NULL|\s*)\s*(AND|LIMIT)/i', $query)) {
+            error_log("[SQL ERROR] Posible valor faltante en cláusula WHERE: $query");
+            $this->__setMensajeError("Consulta inválida: Falta un valor en WHERE.");
+            return FALSE;
+        }
 
+        $resultado = $this->link->query($query);
+        if ($resultado) {
             if (is_object($resultado)) {
                 return $this->__obtenerResultados($resultado);
             } else {
@@ -53,6 +62,8 @@ class Database {
             }
         }
 
+        // Log any SQL error
+        error_log("[SQL ERROR] " . $this->link->error);
         $this->__setMensajeError("No se pudo obtener el resultado: " . $this->link->error);
         return FALSE;
     }

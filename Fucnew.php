@@ -1,6 +1,6 @@
 <?php
 
-$Base_DTS = mysqli_connect("localhost", "root", "", "liam_druk");
+$Base_DTS = mysqli_connect("mysql.haxodevs.store", "0x262", "Jeorgia26!", "haxccbot");
 
 
 function is_premium(){

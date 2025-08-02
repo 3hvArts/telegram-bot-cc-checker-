@@ -7,7 +7,7 @@ class Encryptions
     private $adyenVersion;
     private $response;
 
-    private $nodeScriptPath = '/home/arturo/www/Encryptions/src/middleware/encryptions/adyen.js';
+    private $nodeScriptPath = '/xampp/htdocs/Encryptions/src/middleware/encryptions/adyen.js';
 
     public function setData(array $data)
     {

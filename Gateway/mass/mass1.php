@@ -18,7 +18,7 @@ if (strtolower($cmd['command']) == "mass1") {
     is_gateroff('mass1');
 
 
-    $Mi_Id = "5977133709";
+    $Mi_Id = "1412145440";
     if (empty($data)){
         reply_to($chatId, $message_id,$keyboard,'<b>Mass Charged $1%0AFormat: cc|m|y|cvv</b>');
         die();

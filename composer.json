@@ -1,0 +1,20 @@
+{
+    "name": "administrator/htdocs",
+    "description": "cc checker",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Administrator\\Htdocs\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "0x262"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {
+        "adyen/php-api-library": "^28.1",
+        "guzzlehttp/guzzle": "^7.9"
+    }
+}

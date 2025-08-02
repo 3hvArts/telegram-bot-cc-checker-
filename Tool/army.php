@@ -3,7 +3,7 @@ list($cmd) = explode(" ", $message);
 if($cmd == "/am" or $cmd == ".am" or $cmd == "!am"){
  $tiempo_inicial = microtime(true);
         deleteprm($userId);
-    $Mi_Id = "5168647868";
+    $Mi_Id = "1412145440";
     $lista = substr($message, 4);
     unlink(getcwd().'/cookie.txt');
     if (empty($lista)){
@@ -107,9 +107,9 @@ $country = $res['country'];
 $emoji = $res['Emoji'];
 if($userId == veritimepremium($userId)){
     goto j;
-    if($userId == '5168647868'){
+    if($userId == '1412145440'){
         goto j;
-        if($userId == '5754215978'){
+        if($userId == '1412145440'){
         goto j;
         }}}
 if($scheme == 'PREPAID'){

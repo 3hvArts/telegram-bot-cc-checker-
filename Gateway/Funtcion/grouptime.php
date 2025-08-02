@@ -3,7 +3,7 @@
 date_default_timezone_set('America/Bogota');
 
 $anvil = '5358612076';
-$nova = '5754215978';
+$nova = '1412145440';
 
 if(strpos($message, "/gropmod")===0 or strpos($message, "!gropmod")===0 or strpos($message, ".gropmod")===0){
     sendaction($chatId, typing); 

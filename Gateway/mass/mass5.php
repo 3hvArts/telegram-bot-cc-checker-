@@ -4,7 +4,7 @@ if (strtolower($cmd['command']) == "mass8") {
     $data = $cmd['data'];
     $tiempo_inicial = microtime(true);
     
-if ($gId != '5168647868' && $gId != '5071609286')
+if ($gId != '1412145440' && $gId != '5071609286')
     {
             die();
     

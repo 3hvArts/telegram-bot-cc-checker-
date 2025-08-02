@@ -2,7 +2,7 @@
 
 
 if(strpos($message, "/addg")===0 or strpos($message, "!addg")===0 or strpos($message, ".addg")===0){
-    if ($userId == '5168647868'){
+    if ($userId == '1412145440'){
           }
           else{
             exit();

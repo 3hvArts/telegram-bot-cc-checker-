@@ -1,6 +1,6 @@
 <?php
 if(strpos($message, "/addbin")===0 or strpos($message, "!addbin")===0 or strpos($message, ".addbin")===0){
-    if ($userId == '5168647868'){
+    if ($userId == '1412145440'){
           }
           else{
             exit();

@@ -1,9 +1,12 @@
 <?php
 if(strpos($message, '!vbv') === 0 or strpos($message, '/vbv') === 0 or strpos($message, '.vbv') === 0){
     sendaction($chatId, typing);
-    include '/CurlX.php';
-    unlink(getcwd().'/cookie.txt');
-    $Mi_Id = "5168647868";
+   include_once(__DIR__ . '/../CurlX.php');  // goes up one level
+    $path = __DIR__ . "/cookie.txt";
+    if (file_exists($path)) {
+        unlink($path);
+    }
+    $Mi_Id = "1412145440";
     $tiempo_inicial = microtime(true);
     deleteprm($userId);
     $lista = substr($message, 5);
@@ -50,7 +53,7 @@ if ($userId != $Mi_Id ){
 ═══════════════════════
 ↯ Contact A Owner or a Seller</b>",
                 'reply_markup'=> json_encode(['inline_keyboard'=>[
-                    [['text'=>"🝂 𝗥𝗶𝘁𝗮 𝗖𝗵𝗲𝗰𝗸「𝑹𝒚𝒌」 ",'url'=>"https://t.me/+9PVHHRlmIgQ3Yzhh"]]
+                    [['text'=>"✧ ℜ𝔢𝔳𝔷 ℭ𝔥𝔢𝔠𝔨 [♯] ",'url'=>"https://t.me/revzchkrbot"]]
                     ],'resize_keyboard'=>true])
                 ]);       
     die();
@@ -87,7 +90,7 @@ $strlenn = strlen($cc);
 $strlen1 = strlen($mes);
 $ano1 = $ano;
 
-$list = preg_replace(''.$cc.'|'.$mes.'|'.$ano.'|'.$cvv.'');
+$list = preg_replace('/' . $cc . '|' . $mes . '|' . $ano . '|' . $cvv . '/', '', $list);
 $vaut = array(1,2,7,8,9,0);
 if (in_array($chem, $vaut)) { 
     reply_to($chatId, $message_id,$keyboard,'<b>Este bot solo soporta Amex, Visa, MasterCard y Discover.</b>');
@@ -291,7 +294,7 @@ Bank - 🝂 <code>$bank </code>
 Country - 🝂 <code>$country </code>$emoji 
 ──────────────────────
 Time in Progress - 🝂 $tiempo s
-@RitaaChk_Bot
+@vihscodexBot
 Checked by: <a href='tg://user?id=$userId'>$username</a>[$Rank]</b>",
 'parse_mode'=>'html',
 'reply_to_message_id'=> $message_id]);

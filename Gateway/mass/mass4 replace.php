@@ -14,7 +14,7 @@ Contador($gateway);
 is_credits();
 deltecred($userId);
 is_gateroff('mass4');
-$Mi_Id = "5168647868";
+$Mi_Id = "1412145440";
 if (empty($data)){
             bot('sendMessage', [
                 'chat_id' =>$chatId,

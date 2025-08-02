@@ -16,7 +16,7 @@ $gateway = '/mass3 :'.$NameGater;
 Contador($gateway);
     deltecred($userId);
     is_gateroff('mass3');
-    $Mi_Id = "5168647868";
+    $Mi_Id = "1412145440";
 $targetas = substr($message, 6);
 if(empty($targetas)){
 $targetas = $r_msg;

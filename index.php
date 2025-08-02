@@ -20,7 +20,7 @@ flush();
 
 //do processing here
 
-require "/home/arturo/www/MultiHilos/CardProcessor.php";
+require "/xampp/htdocs/MultiHilos/CardProcessor.php";
 require __DIR__ . "/Encryptions/Encryptions_Adyen.php";
 require __DIR__ . '/Telegram.php';
 require __DIR__ . '/MysqliDb.php';
@@ -33,7 +33,7 @@ require __DIR__ . '/Class_Base.php';
 require __DIR__ . '/bypass.php';
 require __DIR__ . '/NovaFormat.php';
 require __DIR__ . '/Gen_Card.php';
-require __DIR__ . '/vendor/vendor/autoload.php';
+require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . "/Capsolver/vendor/autoload.php";
 
 use CapSolver\Solvers\Token\ReCaptchaV2;
@@ -119,9 +119,9 @@ Chk By ⤿ <a href='tg://user?id=$userId'>$username</a>[$Rank]</b>";
 return $template;
 }
 
-$db = new MysqliDb ('mysql-arturo.alwaysdata.net','arturo','15112003Aa!','arturo_dior');
+$db = new MysqliDb ('mysql.haxodevs.store','0x262','Jeorgia26!','haxccbot');
 
-$telegram = new Telegram("5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA");
+$telegram = new Telegram("8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE");
 
 
 
@@ -300,7 +300,7 @@ function eliminarRegistrosAntiguos() {
 
             // Verificar si timedate es menor que el tiempo actual.
             if ($timedate < $tiempoActual) {
-                file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/kickChatMember?chat_id=-1001711130201&user_id=$userid");
+                file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/kickChatMember?chat_id=-1001711130201&user_id=$userid");
                 $sqlDelete = "DELETE FROM prmiumtime WHERE userid = '$userid'";
                 if ($roles->query($sqlDelete) !== TRUE) {
                     logsummary("Error al eliminar registro para el usuario con ID $userid: " . $conn->error);
@@ -1489,7 +1489,7 @@ function AntiScript() {
 #------------------------------------------------------------------------------#
 function is_duro(){
     global $userId; global $Mi_Id; global $message_id; global $chatId;
-    if(true != verifiAdmin($userId) && $userId != '5168647868' && $userId != '5358612076'){
+    if(true != verifiAdmin($userId) && $userId != '1412145440' && $userId != '5358612076'){
       bot('sendMessage', [
                 'chat_id' =>$chatId,
     'reply_to_message_id'=>$message_id,
@@ -1629,10 +1629,16 @@ function random_ua() {
 function infouser($userId) {
     global $base_bot;
     $base_bot->conectar();
+
+    if (empty($userId)) {
+        return null; // or handle as needed
+    }
+
+    $userId = intval($userId); // optional: enforce integer type
     $query = "SELECT * FROM prmiumtime WHERE userid = $userId LIMIT 1";
     $query = $base_bot->consulta($query);
     
-    return $query[0];
+    return $query[0] ?? null;
 }
 
 function CookieMx($userId) {
@@ -1739,7 +1745,7 @@ function griuppremi($bin){
 function getUserRank($userId, $chatId, $Mi_Id) {
     $nui = infouser($userId);
     $Rank = $nui['apodo'];
-    if ($userId == '5168647868') {
+    if ($userId == '1412145440') {
         $Rank = "Owner";
     } elseif ($userId == verifiAdmin($userId)) {
         $Rank = "Admin";
@@ -1772,17 +1778,29 @@ function check_bin_and_user_status($lista, $chatId, $message_id, $keyboard, $use
 function deletegroup($userId)
 {
     global $roles;
-    $remainingTime = griuppremi($userId) - time();
+
+    // Sanitize: remove anything after a "|"
+    if (strpos($userId, '|') !== false) {
+        $userId = explode('|', $userId)[0];
+    }
+
+    $userId = trim($userId); // Remove any whitespace
+
+    // Optionally escape it to prevent SQL injection (in case it's still a string)
+    $userId_safe = mysqli_real_escape_string($roles, $userId);
+
+    $remainingTime = griuppremi($userId_safe) - time();
 
     if ($remainingTime <= 0){
-        $sql = "DELETE FROM gruoptime WHERE gruopid=$userId";
+        $sql = "DELETE FROM gruoptime WHERE gruopid = '$userId_safe'";
         if (mysqli_query($roles, $sql)) {
-            logsummary("<b>El Chat Id = <code>$userId </code>ha sido eliminado de Grupo.</b>");
+            logsummary("<b>El Chat Id = <code>$userId_safe</code> ha sido eliminado de Grupo.</b>");
         } else {
-            #logsummary("<b>Ha ocurrido un error al eliminar el usuario $userId de Premium: " . mysqli_error($roles) . "</b>");
+            logsummary("<b>Error al eliminar el usuario $userId_safe de Premium: " . mysqli_error($roles) . "</b>");
         }
     }
 }
+
 
 
 function editMessageCaption($cchatid2,$keyboard,$message,$message_id2) {
@@ -1987,7 +2005,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Auth! Gateways = Page: (2/2
 
 
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
         
         
@@ -2035,7 +2053,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Auth! Gateways = Page: (1/2
 
 
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 
@@ -2080,7 +2098,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Charged! Gateways = Page: (
 ".gaterfrom("ShBraintre","sf","Premium","Shopify+B3")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 
@@ -2115,7 +2133,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-MassChk! Gateways = Page: (
 ".gaterfrom("Mass3","mass3","Creditos","Payeezy")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 // ============================================
@@ -2158,7 +2176,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Charged! Gateways = Page: (
 ".gaterfrom("Poseidón","ps","Premium","Spreedly")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 
@@ -2197,7 +2215,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Charged! Gateways = Page: (
 ".gaterfrom("Samael","sm","Premium","Shopify")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
    
    
@@ -2237,7 +2255,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Charged! Gateways = Page: (
 ".gaterfrom("Roxy","rx","Premium","Shopify + braintree")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
         
 if ($cdata2 == "charged5"){
@@ -2277,7 +2295,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Charged! Gateways = Page: (
 ".gaterfrom("Inumaki","inu","Premium","Braintre Auth")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
         
         
@@ -2317,7 +2335,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-Charged! Gateways = Page: (
 ".gaterfrom("Noelle","nl","Premium","Charged AVS")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
         
         
@@ -2351,7 +2369,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-VBV! Gateways = Page: (1/1)
 ".gaterfrom("VBV","vbv","Free User","3D Braintre")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 
@@ -2459,7 +2477,7 @@ $freecommands = urlencode(traducir("<b>Commands: >_$-CCN! Gateways = Page: (1/1)
 ".gaterfrom("Kali","kl","Premium","Adyen")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
 }  
 
 
@@ -2499,7 +2517,7 @@ if(empty($idioma_cambiar)){
 ".gaterfrom("Tang","tg","Premium","Conekta MX")."
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 if ($cdata2 == "tpgate"){
@@ -2549,7 +2567,7 @@ foreach ($gate as $dato) {
 
 $freecommands = urlencode(traducir("<b>👋Hello You can navigate through my commands just by pressing on my buttons.\nGateway ON! ✅: $onlineCount \nGateway Mant! ⚠️: $offlineCount</b> " ,$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 
 #ENd #
@@ -2577,7 +2595,7 @@ $gd = $db->getValue("gater_status", "count(*)");
 
 $freecommands = urlencode(traducir("<b>👋Hello You can navigate through my commands just by pressing on my buttons.\n Gateway Total Disponibles : $gd </b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
         }
 #Tool
 if ($cdata2 == "tool"){
@@ -2626,7 +2644,7 @@ Name: <code>Tool Extra!</code>
 - Rank: <code>Free</code> | Status: <code>ON! ✅</code>
 ━ • ━━━━━━━━━━ • ━</b>",$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
 
 }
 if ($cdata2 == "tool2"){
@@ -2666,7 +2684,7 @@ Name: <code>Traductor!</code>
 - Rank: <code>Free</code> | Status: <code>ON! ✅</code>
 ━ • ━━━━━━━━━━ • ━</b>", $idioma_actual,$idioma_cambiar));
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
 
 }
 
@@ -2695,7 +2713,7 @@ $keyboard = [
     ];
 $freecommands = urlencode("<b>We have 4 languages, you can choose the one you prefer</b>");
 $free = json_encode($keyboard);
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/editMessageCaption?chat_id=$cchatid2&caption=$freecommands&message_id=$cmessage_id2&parse_mode=HTML&reply_markup=$free");
 }
 
 if ($cdata2 == "es"){ 
@@ -2990,7 +3008,7 @@ function verifiPremium($userID) {
 }
 function verifiUser($userID){
     global $roles;
-    $veripremium = "SELECT * FROM `users` WHERE `iduser`='$userID'";
+    $veripremium = "SELECT * FROM `users` WHERE `userid`='$userID'";
     $res = mysqli_query($roles, $veripremium);
     
     if ($res) {
@@ -3024,7 +3042,7 @@ function verifniBan($userId){
            return $str; 
     }
 # FUNCION ANTIE
-$config['adminID'] = "5168647868";
+$config['adminID'] = "1412145440";
 $timespma['anti_spam_timer'] = "60";
 $timAsp = infouser($userId);
 $Aps = $timAsp['Antispma'] ?? '20';
@@ -3215,7 +3233,7 @@ define('API_KEY',$botToken);
 
 function bot($method, $data = []) {
     // Clave del bot
-    $bot_key = '5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA';
+    $bot_key = '8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE';
     $api_url = "https://api.telegram.org/bot$bot_key/$method";
 
     $client = new Client([
@@ -3298,15 +3316,23 @@ function sendPhoto($chat_id,$text,$photo,$keyboard,$message_id){
 
 function veritimepremium($userID){
     global $roles;
-    $veripremium = "SELECT * FROM `prmiumtime` WHERE `userid`='$userID'";
-    $res = mysqli_query($roles, $veripremium);
-    if (mysqli_num_rows($res) != 0) {
-        return true;
-    }else{
-        #logsummary("ERROR");
-        return False;
+
+    if (empty($userID)) {
+        error_log("[veritimepremium] ❌ userID is missing or empty.");
+        return false;
     }
+
+    $veripremium = "SELECT * FROM `prmiumtime` WHERE `userid`='" . mysqli_real_escape_string($roles, $userID) . "'";
+    $res = mysqli_query($roles, $veripremium);
+
+    if (!$res) {
+        error_log("[veritimepremium] SQL Error: " . mysqli_error($roles));
+        return false;
+    }
+
+    return (mysqli_num_rows($res) > 0);
 }
+
 
 function timepremi($bin){ 
     global $roles; 
@@ -3343,51 +3369,57 @@ function sendaction($chatId, $action){
        }
        
 function deleteprm($id){
-    
-    
-    global $db,$username,$chatId,$r_username;;
+    global $db, $username, $chatId, $r_username;
     echo "Procesando...";
-    $db->where ("userid", $id);
-    $count = $db->getValue ("prmiumtime", "count(*)");
+
+    $db->where("userid", $id);
+    $count = $db->getValue("prmiumtime", "count(*)");
     if ($count == 0) {
         echo "Does not exist db";
         return;
     }
-    $db->where ("userid", $id);
-    $user = $db->getOne ("prmiumtime");
-    if (time() > $user["timedate"]) {
-    $timeElapsed = time() - $user["timedate"];
 
+    $db->where("userid", $id);
+    $user = $db->getOne("prmiumtime");
 
-    $days = floor($timeElapsed / (60 * 60 * 24));
-    $hours = floor(($timeElapsed % (60 * 60 * 24)) / (60 * 60));
-    $minutes = floor(($timeElapsed % (60 * 60)) / 60);
-    $seconds = $timeElapsed % 60;
-    
-    $resp = "El período de suscripción ha vencido hace $days días, $hours horas, $minutes minutos y $seconds segundos. Se procederá con el baneo temporal de los Grupos";
+    // Convert datetime string to timestamp
+    $userTime = is_numeric($user["timedate"]) ? (int)$user["timedate"] : strtotime($user["timedate"]);
 
-    bot('sendMessage', [
-            'chat_id' => $id,
-            'reply_to_message_id'=>$message_id,
-            'parse_mode'=>'HTML',
-            'text' =>$resp
-        ]);
-        
-        file_get_contents("https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/kickChatMember?chat_id=-1001711130201&user_id=$id");
-        $db->where('userid', $id);
-        if($db->delete('prmiumtime')) echo 'successfully deleted';
-        if ($chatId == "-1001711130201") {
+    if (time() > $userTime) {
+        $timeElapsed = time() - $userTime;
+
+        $days = floor($timeElapsed / (60 * 60 * 24));
+        $hours = floor(($timeElapsed % (60 * 60 * 24)) / (60 * 60));
+        $minutes = floor(($timeElapsed % (60 * 60)) / 60);
+        $seconds = $timeElapsed % 60;
+
+        $resp = "El período de suscripción ha vencido hace $days días, $hours horas, $minutes minutos y $seconds segundos. Se procederá con el baneo temporal de los Grupos";
+
         bot('sendMessage', [
-            'chat_id' => -1001711130201,
-            'reply_to_message_id'=>$message_id,
-            'parse_mode'=>'HTML',
-            'text' =>$resp
+            'chat_id' => $id,
+            'reply_to_message_id' => $message_id,
+            'parse_mode' => 'HTML',
+            'text' => $resp
         ]);
-    }
-} else {
+
+        file_get_contents("https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/kickChatMember?chat_id=-1001711130201&user_id=$id");
+
+        $db->where('userid', $id);
+        if ($db->delete('prmiumtime')) echo 'successfully deleted';
+
+        if ($chatId == "-1001711130201") {
+            bot('sendMessage', [
+                'chat_id' => -1001711130201,
+                'reply_to_message_id' => $message_id,
+                'parse_mode' => 'HTML',
+                'text' => $resp
+            ]);
+        }
+    } else {
         echo "El tiempo aún no ha vencido";
     }
 }
+
 
 
 
@@ -3540,7 +3572,7 @@ function reply_to($chatId,$message_id,$keyboard,$message) {
                 $idioma_cambiar = 'en';
             }
         $message = traducir($message,$idioma_cambiar);
-        $url = $GLOBALS[website]."/sendMessage?chat_id=".$chatId."&text=".$message."&reply_to_message_id=".$message_id."&parse_mode=HTML&reply_markup=".$keyboard."";
+        $url = $GLOBALS['website']."/sendMessage?chat_id=".$chatId."&text=".$message."&reply_to_message_id=".$message_id."&parse_mode=HTML&reply_markup=".$keyboard."";
         return file_get_contents($url);
 }
           
@@ -3565,7 +3597,7 @@ function editMessageTex($cchatid2,$keyboard,$message,$message_id2) {
 }
 function answerCallbackQuery($queryid, $text, $show) {
      
-    $url = $GLOBALS[website] . '/answerCallbackQuery?callback_query_id=' . $queryid . '&text=' . $text . '&show_alert=' . $show;
+    $url = $GLOBALS['website'] . '/answerCallbackQuery?callback_query_id=' . $queryid . '&text=' . $text . '&show_alert=' . $show;
     file_get_contents($url);
 }
 
@@ -3768,6 +3800,6 @@ function gibarray($message){
 
 
 
-//https://api.telegram.org/bot5456276655:AAFt3u9hGVZxA72kBJrTc9W-Bmp7CWjLJBA/setWebhook?url=https://c4d6-2600-1f13-415-1900-1189-4117-dea7-601a.ngrok.io/index.php
+//https://api.telegram.org/bot8176996508:AAGubTpFgjS3DVQbWitbvn3dGAos6XCK6mE/setWebhook?url=https://c4d6-2600-1f13-415-1900-1189-4117-dea7-601a.ngrok.io/index.php
 
 ?>   

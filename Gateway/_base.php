@@ -5,7 +5,7 @@ if(strpos($message, "/off")===0 or strpos($message, "!off")===0 or strpos($messa
   
 
 
-if ($gId != '5168647868' && $gId != '5358612076'){
+if ($gId != '1412145440' && $gId != '5358612076'){
             die();
 }
     sendaction($chatId, typing); 
